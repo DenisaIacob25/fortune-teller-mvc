@@ -32,6 +32,96 @@ namespace fortune_teller_mvc.Controllers
             {
                 return HttpNotFound();
             }
+            //retirement fortune
+            ViewBag.RetireYears = 0;
+
+            if (customer.Age % 2 == 0)  //figure out if the age is even or odd
+            {
+                ViewBag.RetireYears = 22; //even number
+            }
+            else
+            {
+                ViewBag.RetireYears = 35;
+            }
+            //vacation fortune 
+            ViewBag.UserVaca = "";
+
+            if (customer.NumberOfSiblings == 0)
+            {
+                ViewBag.UserVaca = ("a beach house in Cancun");
+            }
+
+            else if (customer.NumberOfSiblings == 1)
+            {
+                ViewBag.UserVaca = ("a vacation home in Colorado");
+            }
+            else if (customer.NumberOfSiblings == 2)
+            {
+                ViewBag.UserVaca = ("a vacation home in Spain");
+            }
+            else if (customer.NumberOfSiblings == 3)
+            {
+                ViewBag.UserVaca = ("a beach house in Croatia");
+            }
+            else if (customer.NumberOfSiblings > 3)
+            {
+                ViewBag.UserVaca = ("a beach house in Australia");
+            }
+            else
+            {
+                ViewBag.UserVaca = ("a trailer in Crappy Ohio");
+            }
+            //fortune for mode of transportation
+           ViewBag.userTransport = "";
+
+            switch (customer.FavoriteColor)
+            {
+                case "RED":
+                    ViewBag.userTransport = ("a boat");
+                    break;
+                case "ORANGE":
+                    ViewBag.userTransport = ("a Ford SUV");
+                    break;
+                case "YELLOW":
+                    ViewBag.userTransport = ("a motorcycle");
+                    break;
+                case "GREEN":
+                    ViewBag.userTransport = ("a Rolls Royce");
+                    break;
+                case "BLUE":
+                    ViewBag.userTransport = ("a bike");
+                    break;
+                case "INDIGO":
+                    ViewBag.userTransport = ("a yacht");
+                    break;
+                case "VIOLET":
+                    ViewBag.userTransport = ("an airplane");
+                    break;
+                default:
+                    ViewBag.userTransport = ("a squeaky shopping cart");
+                    break;
+            }
+            //method for money
+            ViewBag.money=0;
+
+            if (customer.BirthMonth >= 1 && customer.BirthMonth <= 4)
+            {
+                ViewBag.money = 3.45d;
+            }
+            else if (customer.BirthMonth >= 5 && customer.BirthMonth <= 8)
+            {
+                ViewBag.money = 4.6d;
+            }
+            else if (customer.BirthMonth >= 9 && customer.BirthMonth <= 12)
+            {
+                ViewBag.money = 500.56d;
+            }
+            else
+            {
+                ViewBag.money = 0.0d;
+            }
+
+
             return View(customer);
         }
 
